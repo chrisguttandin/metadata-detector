@@ -19,10 +19,15 @@
     "load-grunt-config": "^0.17.2",
     "mocha": "^2.3.3"
   },
+  "homepage": "https://github.com/chrisguttandin/metadata-detector",
   "license": "MIT",
   "main": "src/module.js",
   "name": "metadata-detector",
   "readme": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chrisguttandin/metadata-detector.git"
+  },
   "scripts": {
     "test": "grunt test"
   },
