@@ -22,6 +22,7 @@
   "license": "MIT",
   "main": "src/module.js",
   "name": "metadata-detector",
+  "readme": "README.md",
   "scripts": {
     "test": "grunt test"
   },
