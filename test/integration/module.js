@@ -12,41 +12,41 @@ describe('metadata-detector', function () {
                 '1000-frames-of-noise-encoded-and-tagged-with-itunes.mp3',
                 [
                     [ 0, 2129 ]
-                ],
+                ]
             ], [
                 '1000-frames-of-noise-encoded-with-ffmpeg-and-tagged-with-vlc.mp3',
                 [
                     [ 0, 4928 ],
                     [ 8061, 8189 ]
-                ],
+                ]
             ], [
                 '1000-frames-of-noise-encoded-with-ffmpeg.mp3',
                 [
                     [ 0, 3870 ]
-                ],
+                ]
             ], [
                 '1000-frames-of-noise-encoded-with-itunes-and-tagged-with-mp3tag.mp3',
                 [
                     [ 0, 2129 ],
                     [ 5264, 5392 ]
-                ],
+                ]
             ], [
                 '1000-frames-of-noise-encoded-with-itunes-and-tagged-with-vlc.mp3',
                 [
                     [ 0, 2129 ],
                     [ 5264, 5392 ]
-                ],
+                ]
             ], [
                 '1000-frames-of-noise-encoded-with-itunes.mp3',
                 [
                     [ 0, 2129 ]
-                ],
+                ]
             ], [
                 '1000-frames-of-noise-encoded-with-soundbooth-and-tagged-with-vlc.mp3',
                 [
                     [ 0, 6471 ],
                     [ 8559, 8687 ]
-                ],
+                ]
             ], [
                 '1000-frames-of-noise-encoded-with-soundbooth.mp3',
                 [
