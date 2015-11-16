@@ -9,6 +9,11 @@ describe('metadata-detector', function () {
 
         leche.withData([
             [
+                '1000-frames-of-noise-encoded-and-tagged-with-itunes.mp3',
+                [
+                    [ 0, 2129 ]
+                ],
+            ], [
                 '1000-frames-of-noise-encoded-with-ffmpeg-and-tagged-with-vlc.mp3',
                 [
                     [ 0, 4928 ],
@@ -18,11 +23,6 @@ describe('metadata-detector', function () {
                 '1000-frames-of-noise-encoded-with-ffmpeg.mp3',
                 [
                     [ 0, 3870 ]
-                ],
-            ], [
-                '1000-frames-of-noise-encoded-and-tagged-with-itunes.mp3',
-                [
-                    [ 0, 2129 ]
                 ],
             ], [
                 '1000-frames-of-noise-encoded-with-itunes-and-tagged-with-mp3tag.mp3',
