@@ -14,10 +14,20 @@ describe('metadata-detector', function () {
                     [ 0, 2129 ]
                 ]
             ], [
+                '1000-frames-of-noise-encoded-with-ffmpeg-and-tagged-with-vlc.flac',
+                [
+                    [ 0, 8376 ]
+                ]
+            ], [
                 '1000-frames-of-noise-encoded-with-ffmpeg-and-tagged-with-vlc.mp3',
                 [
                     [ 0, 4928 ],
                     [ 8061, 8189 ]
+                ]
+            ], [
+                '1000-frames-of-noise-encoded-with-ffmpeg.flac',
+                [
+                    [ 0, 8376 ]
                 ]
             ], [
                 '1000-frames-of-noise-encoded-with-ffmpeg.mp3',
@@ -52,6 +62,16 @@ describe('metadata-detector', function () {
                 [
                     [ 0, 5370 ]
                 ]
+            ], [
+                '1000-frames-of-noise-encoded-with-toast-and-tagged-with-vlc.flac',
+                [
+                    [ 0, 4233 ]
+                ]
+            ], [
+                '1000-frames-of-noise-encoded-with-toast.flac',
+                [
+                    [ 0, 4233 ]
+                ]
             ]
         ], function (filename, locations) {
 
@@ -76,8 +96,14 @@ describe('metadata-detector', function () {
                 '1000-frames-of-noise-encoded-and-tagged-with-itunes.mp3',
                 3135
             ], [
+                '1000-frames-of-noise-encoded-with-ffmpeg-and-tagged-with-vlc.flac',
+                1690
+            ], [
                 '1000-frames-of-noise-encoded-with-ffmpeg-and-tagged-with-vlc.mp3',
                 3133,
+            ], [
+                '1000-frames-of-noise-encoded-with-ffmpeg.flac',
+                1690
             ], [
                 '1000-frames-of-noise-encoded-with-ffmpeg.mp3',
                 3133
@@ -96,6 +122,12 @@ describe('metadata-detector', function () {
             ], [
                 '1000-frames-of-noise-encoded-with-soundbooth.mp3',
                 2088
+            ], [
+                '1000-frames-of-noise-encoded-with-toast-and-tagged-with-vlc.flac',
+                3828
+            ], [
+                '1000-frames-of-noise-encoded-with-toast.flac',
+                3828
             ]
         ], function (filename, byteLength) {
 
