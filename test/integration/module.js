@@ -100,7 +100,7 @@ describe('metadata-detector', function () {
                 1690
             ], [
                 '1000-frames-of-noise-encoded-with-ffmpeg-and-tagged-with-vlc.mp3',
-                3133,
+                3133
             ], [
                 '1000-frames-of-noise-encoded-with-ffmpeg.flac',
                 1690
