@@ -1,14 +1,15 @@
 'use strict';
 
 var createReadStream = require('fs').createReadStream,
-    metadataDetector = require('../../../src/module.js'),
-    testData = require('../../fixtures/test-data.json');
+    lengthsData = require('../../fixtures/lengths-data.json'),
+    locationsData = require('../../fixtures/locations-data.json'),
+    metadataDetector = require('../../../src/module.js');
 
 describe('metadata-detector', function () {
 
     describe('createLocateStream()', function () {
 
-        leche.withData(testData, function (filename, locations) {
+        leche.withData(locationsData, function (filename, locations) {
 
             it('should locate the metadata tags of the file', function (done) {
                 var lctns = [],
@@ -38,45 +39,7 @@ describe('metadata-detector', function () {
 
     describe('createStripStream()', function () {
 
-        leche.withData([
-            [
-                '1000-frames-of-noise-encoded-and-tagged-with-itunes.mp3',
-                3135
-            ], [
-                '1000-frames-of-noise-encoded-with-ffmpeg-and-tagged-with-vlc.flac',
-                1690
-            ], [
-                '1000-frames-of-noise-encoded-with-ffmpeg-and-tagged-with-vlc.mp3',
-                3133
-            ], [
-                '1000-frames-of-noise-encoded-with-ffmpeg.flac',
-                1690
-            ], [
-                '1000-frames-of-noise-encoded-with-ffmpeg.mp3',
-                3133
-            ], [
-                '1000-frames-of-noise-encoded-with-itunes-and-tagged-with-mp3tag.mp3',
-                3135
-            ], [
-                '1000-frames-of-noise-encoded-with-itunes-and-tagged-with-vlc.mp3',
-                3135
-            ], [
-                '1000-frames-of-noise-encoded-with-itunes.mp3',
-                3135
-            ], [
-                '1000-frames-of-noise-encoded-with-soundbooth-and-tagged-with-vlc.mp3',
-                2088
-            ], [
-                '1000-frames-of-noise-encoded-with-soundbooth.mp3',
-                2088
-            ], [
-                '1000-frames-of-noise-encoded-with-toast-and-tagged-with-vlc.flac',
-                3828
-            ], [
-                '1000-frames-of-noise-encoded-with-toast.flac',
-                3828
-            ]
-        ], function (filename, byteLength) {
+        leche.withData(lengthsData, function (filename, byteLength) {
 
             it('should strip the metadata tags from the file', function (done) {
                 var btLngth = 0,
