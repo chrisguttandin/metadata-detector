@@ -10,7 +10,7 @@ describe('metadata-detector', function () {
 
         leche.withData(testData, function (filename, locations) {
 
-            it('should strip the id3 tag from the file', function (done) {
+            it('should locate the metadata tags of the file', function (done) {
                 loadFixture(filename, function (err, arrayBuffer) {
                     expect(err).to.be.null;
 
@@ -66,7 +66,7 @@ describe('metadata-detector', function () {
             ]
         ], function (filename, byteLength) {
 
-            it('should strip the id3 tag from file', function (done) {
+            it('should strip the metadata tags from the file', function (done) {
                 loadFixture(filename, function (err, arrayBuffer) {
                     expect(err).to.be.null;
 

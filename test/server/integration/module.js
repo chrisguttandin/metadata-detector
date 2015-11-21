@@ -6,11 +6,11 @@ var createReadStream = require('fs').createReadStream,
 
 describe('metadata-detector', function () {
 
-    describe('createReadStream()', function () {
+    describe('createLocateStream()', function () {
 
         leche.withData(testData, function (filename, locations) {
 
-            it('should strip the id3 tag from the file', function (done) {
+            it('should locate the metadata tags of the file', function (done) {
                 var lctns = [],
                     readable = createReadStream('test/fixtures/' + filename),
                     writable = metadataDetector.createLocateStream();
