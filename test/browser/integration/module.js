@@ -3,9 +3,25 @@
 var loadFixture = require('../../helper/load-fixture.js'),
     lengthsData = require('../../fixtures/lengths-data.json'),
     locationsData = require('../../fixtures/locations-data.json'),
-    metadataDetector = require('../../../src/module.js');
+    metadataDetector = require('../../../src/browser/module.js');
 
 describe('metadata-detector', function () {
+
+    describe('createLocateStream()', function () {
+
+        it('should be undefined', function () {
+            expect(metadataDetector.createLocateStream).to.be.undefined;
+        });
+
+    });
+
+    describe('createStripStream()', function () {
+
+        it('should be undefined', function () {
+            expect(metadataDetector.createStripStream).to.be.undefined;
+        });
+
+    });
 
     describe('locate()', function () {
 

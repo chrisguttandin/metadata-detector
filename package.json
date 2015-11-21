@@ -1,5 +1,6 @@
 {
   "author": "Christoph Guttandin",
+  "browser": "src/browser/module.js",
   "dependencies": {
     "synchsafe": "0.0.0"
   },
@@ -24,7 +25,7 @@
   },
   "homepage": "https://github.com/chrisguttandin/metadata-detector",
   "license": "MIT",
-  "main": "src/module.js",
+  "main": "src/server/module.js",
   "name": "metadata-detector",
   "readme": "README.md",
   "repository": {

@@ -3,7 +3,7 @@
 var createReadStream = require('fs').createReadStream,
     lengthsData = require('../../fixtures/lengths-data.json'),
     locationsData = require('../../fixtures/locations-data.json'),
-    metadataDetector = require('../../../src/module.js');
+    metadataDetector = require('../../../src/server/module.js');
 
 describe('metadata-detector', function () {
 
@@ -63,6 +63,22 @@ describe('metadata-detector', function () {
                     });
             });
 
+        });
+
+    });
+
+    describe('locate()', function () {
+
+        it('should be undefined', function () {
+            expect(metadataDetector.locate).to.be.undefined;
+        });
+
+    });
+
+    describe('strip()', function () {
+
+        it('should be undefined', function () {
+            expect(metadataDetector.strip).to.be.undefined;
         });
 
     });
