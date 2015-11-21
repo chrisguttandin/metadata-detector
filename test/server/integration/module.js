@@ -12,11 +12,13 @@ describe('metadata-detector', function () {
 
             it('should locate the metadata tags of the file', function (done) {
                 var lctns = [],
-                    readable = createReadStream('test/fixtures/' + filename),
-                    writable = metadataDetector.createLocateStream();
+                    locateStream = metadataDetector.createLocateStream(),
+                    readable = createReadStream('test/fixtures/' + filename, {
+                        highWaterMark: 128
+                    });
 
                 readable
-                    .pipe(writable)
+                    .pipe(locateStream)
                     .on('error', function (err) {
                         done(err);
                     })

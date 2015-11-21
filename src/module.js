@@ -17,6 +17,9 @@ function LocateStream (options) {
 util.inherits(LocateStream, Writable);
 
 LocateStream.prototype._analyzeBuffer = function () {
+    if (this._isFirstAnalysis && this._buffer.length < 4) {
+        return false;
+    }
 
     if (this._isFirstAnalysis && this._buffer.toString('utf8', 0, 4) === 'fLaC') {
         let isLast = false,
@@ -25,6 +28,10 @@ LocateStream.prototype._analyzeBuffer = function () {
 
         while (!isLast) {
             offset += length;
+
+            if (this._buffer.length < offset + 4) {
+                return false;
+            }
 
             /* jshint bitwise: false */
             isLast = ((this._buffer.readUInt8(offset + 0) & 0x80) !== 0);
@@ -37,7 +44,6 @@ LocateStream.prototype._analyzeBuffer = function () {
             offset + length
         ]);
     }
-
 
     if (this._isFirstAnalysis && this._buffer.toString('utf8', 0, 3) === 'ID3') {
         this.emit('location', [
@@ -54,6 +60,8 @@ LocateStream.prototype._analyzeBuffer = function () {
     }
 
     this._isFirstAnalysis = false;
+
+    return true;
 };
 
 LocateStream.prototype.end = function (chunk) {
@@ -69,10 +77,10 @@ LocateStream.prototype.end = function (chunk) {
 LocateStream.prototype._write = function (chunk, encoding, callback) {
     this._buffer = Buffer.concat([this._buffer, chunk], this._buffer.length + chunk.length);
 
-    this._analyzeBuffer();
-
-    this._offset += this._buffer.length - 128;
-    this._buffer = this._buffer.slice(-128);
+    if (this._analyzeBuffer()) {
+        this._offset += this._buffer.length - 128;
+        this._buffer = this._buffer.slice(-128);
+    }
 
     callback();
 };
