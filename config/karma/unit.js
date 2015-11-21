@@ -19,7 +19,7 @@ module.exports = function (config) {
                 served: true,
                 watched: true,
             },
-            'test/integration/**/*.js'
+            'test/browser/integration/**/*.js'
         ],
 
         frameworks: [
@@ -31,7 +31,7 @@ module.exports = function (config) {
 
         preprocessors: {
             'src/module.js': 'browserify',
-            'test/integration/**/*.js': 'browserify'
+            'test/browser/integration/**/*.js': 'browserify'
         }
 
     });

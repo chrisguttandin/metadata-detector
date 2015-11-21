@@ -8,6 +8,7 @@ module.exports = {
         'jshint'
     ],
     test: [
-        'karma:test'
+        'karma:test',
+        'mochaTest:test'
     ]
 };

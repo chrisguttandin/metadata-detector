@@ -1,7 +1,7 @@
 'use strict';
 
-var loadFixture = require('../helper/load-fixture.js'),
-    metadataDetector = require('../../src/module.js');
+var loadFixture = require('../../helper/load-fixture.js'),
+    metadataDetector = require('../../../src/module.js');
 
 describe('metadata-detector', function () {
 

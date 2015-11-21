@@ -6,6 +6,7 @@
     "eqeqeq": true,
     "esnext": true,
     "globals": {
+        "global": false,
         "module": false,
         "require": false
     },
