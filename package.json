@@ -1,14 +1,17 @@
 {
   "author": "Christoph Guttandin",
-  "browser": "src/browser/module.js",
+  "browser": "build/browser/module.js",
   "dependencies": {
     "synchsafe": "0.0.0"
   },
   "description": "A simple tool to locate and strip metadata from files.",
   "devDependencies": {
+    "babel-plugin-transform-es2015-block-scoping": "^6.1.18",
     "chai": "^3.4.1",
     "grunt": "^0.4.5",
+    "grunt-babel": "^6.0.0",
     "grunt-cli": "^0.1.13",
+    "grunt-contrib-clean": "^0.7.0",
     "grunt-contrib-jshint": "^0.11.3",
     "grunt-githooks": "^0.3.1",
     "grunt-karma": "^0.12.1",
@@ -25,7 +28,7 @@
   },
   "homepage": "https://github.com/chrisguttandin/metadata-detector",
   "license": "MIT",
-  "main": "src/server/module.js",
+  "main": "build/server/module.js",
   "name": "metadata-detector",
   "readme": "README.md",
   "repository": {
