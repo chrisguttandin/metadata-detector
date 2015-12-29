@@ -12,7 +12,7 @@ module.exports = function (config) {
         ],
 
         files: [
-            'src/module.js',
+            'src/browser/module.js',
             {
                 included: false,
                 pattern: 'test/fixtures/**',
@@ -30,7 +30,7 @@ module.exports = function (config) {
         ],
 
         preprocessors: {
-            'src/module.js': 'browserify',
+            'src/browser/module.js': 'browserify',
             'test/browser/integration/**/*.js': 'browserify'
         }
 
