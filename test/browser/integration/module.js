@@ -1,7 +1,7 @@
 'use strict';
 
-var loadFixture = require('../../helper/load-fixture.js'),
-    lengthsData = require('../../fixtures/lengths-data.json'),
+var lengthsData = require('../../fixtures/lengths-data.json'),
+    loadFixture = require('../../helper/load-fixture.js'),
     locationsData = require('../../fixtures/locations-data.json'),
     metadataDetector = require('../../../src/browser/module.js');
 

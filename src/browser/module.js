@@ -8,7 +8,7 @@ function locate(arrayBuffer) {
         textEncoder;
 
     locations = [];
-    textEncoder = new TextDecoder('utf-8');
+    textEncoder = new TextDecoder('utf-8'); // eslint-disable-line no-undef
 
     dataView = new DataView(arrayBuffer, 0, 4);
 
@@ -22,10 +22,10 @@ function locate(arrayBuffer) {
 
             dataView = new DataView(arrayBuffer, offset, 4);
 
-            /* jshint bitwise: false */
+            /* eslint-disable no-bitwise */
             isLast = ((dataView.getUint8(0) & 0x80) !== 0);
             length = ((dataView.getUint8(3) | (dataView.getUint8(2) << 8) | (dataView.getUint8(1) << 16)) + 4);
-            /* jshint bitwise: true */
+            /* eslint-enable no-bitwise */
         }
 
         locations.push([
@@ -59,8 +59,8 @@ function locate(arrayBuffer) {
 
 function strip(arrayBuffer) {
     var begin,
-        locations,
-        end;
+        end,
+        locations;
 
     locations = locate(arrayBuffer);
 

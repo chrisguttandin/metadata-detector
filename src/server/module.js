@@ -34,10 +34,10 @@ LocateStream.prototype._analyzeBuffer = function () {
                 return false;
             }
 
-            /* jshint bitwise: false */
+            /* eslint-disable no-bitwise */
             isLast = ((this._buffer.readUInt8(offset + 0) & 0x80) !== 0);
             length = ((this._buffer.readUInt8(offset + 3) | (this._buffer.readUInt8(offset + 2) << 8) | (this._buffer.readUInt8(offset + 1) << 16)) + 4);
-            /* jshint bitwise: true */
+            /* eslint-enable no-bitwise */
         }
 
         this.emit('location', [
@@ -117,10 +117,10 @@ StripStream.prototype._analyzeBuffer = function () {
                 return false;
             }
 
-            /* jshint bitwise: false */
+            /* eslint-disable no-bitwise */
             isLast = ((this._buffer.readUInt8(offset + 0) & 0x80) !== 0);
             length = ((this._buffer.readUInt8(offset + 3) | (this._buffer.readUInt8(offset + 2) << 8) | (this._buffer.readUInt8(offset + 1) << 16)) + 4);
-            /* jshint bitwise: true */
+            /* eslint-enable no-bitwise */
         }
 
         if (this._buffer.length >= offset + length) {

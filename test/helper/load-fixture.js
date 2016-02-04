@@ -1,9 +1,9 @@
 'use strict';
 
 module.exports = function loadFixture(fixture, callback) {
-    var request = new XMLHttpRequest();
+    var request = new XMLHttpRequest(); // eslint-disable-line no-undef
 
-    request.onerror = function (event) {
+    request.onerror = function () {
         callback('request-failed');
     };
     request.onload = function (event) {
