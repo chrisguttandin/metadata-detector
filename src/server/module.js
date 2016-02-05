@@ -12,6 +12,7 @@ function LocateStream (options) {
     this._buffer = new Buffer(0);
     this._isFirstAnalysis = true;
     this._isLastAnalysis = false;
+    this._nextOggPageStart = 0;
     this._offset = 0;
 }
 
@@ -51,6 +52,54 @@ LocateStream.prototype._analyzeBuffer = function () {
             0,
             synchsafe.decode(this._buffer.readUInt32BE(6)) + 10
         ]);
+    }
+
+    if (this._offset + this._buffer.length > this._nextOggPageStart + 4) {
+        let offset = this._nextOggPageStart - this._offset;
+
+        if (this._buffer.toString('utf8', offset, offset + 4) === 'OggS') {
+            let streamStructureVersion;
+
+            if (this._offset + this._buffer.length < this._nextOggPageStart + 27) {
+                return false;
+            }
+
+            streamStructureVersion = this._buffer.readUInt8(offset + 4);
+
+            if (streamStructureVersion === 0) {
+                let firstByte,
+                    pageSegments,
+                    pageSize;
+
+                pageSegments = this._buffer.readUInt8(offset + 26);
+                pageSize = 27 + pageSegments;
+
+                if (this._offset + this._buffer.length < this._nextOggPageStart + 28 + pageSegments + 1 + 6) {
+                    return false;
+                }
+
+                for (let i = 0; i < pageSegments; i += 1) {
+                    pageSize += this._buffer.readUInt8(offset + 27 + i);
+                }
+
+                firstByte = this._buffer.readUInt8(offset + 27 + pageSegments);
+
+                if (firstByte === 3) {
+                    let identifier = this._buffer.toString('utf8', offset + 27 + pageSegments + 1, offset + 27 + pageSegments + 1 + 6);
+
+                    if (identifier === 'vorbis') {
+                        this.emit('location', [
+                            offset,
+                            offset + pageSize
+                        ]);
+                    }
+                }
+
+                this._nextOggPageStart += pageSize;
+            }
+        }
+    } else {
+        return false;
     }
 
     if (this._isLastAnalysis && this._buffer.toString('utf8', this._buffer.length - 128, this._buffer.length - 125) === 'TAG') {
@@ -96,6 +145,8 @@ function StripStream (options) {
     this._buffer = new Buffer(0);
     this._isFirstAnalysis = true;
     this._isLastAnalysis = false;
+    this._nextOggPageStart = 0;
+    this._offset = 0;
 }
 
 util.inherits(StripStream, Transform);
@@ -140,6 +191,58 @@ StripStream.prototype._analyzeBuffer = function () {
         }
     }
 
+    if (this._offset + this._buffer.length > this._nextOggPageStart + 4) {
+        let offset = this._nextOggPageStart - this._offset;
+
+        if (this._buffer.toString('utf8', offset, offset + 4) === 'OggS') {
+            let streamStructureVersion;
+
+            if (this._offset + this._buffer.length < this._nextOggPageStart + 27) {
+                return false;
+            }
+
+            streamStructureVersion = this._buffer.readUInt8(offset + 4);
+
+            if (streamStructureVersion === 0) {
+                let firstByte,
+                    identifier,
+                    pageSegments,
+                    pageSize;
+
+                pageSegments = this._buffer.readUInt8(offset + 26);
+                pageSize = 27 + pageSegments;
+
+                if (this._offset + this._buffer.length < this._nextOggPageStart + 28 + pageSegments + 1 + 6) {
+                    return false;
+                }
+
+                for (let i = 0; i < pageSegments; i += 1) {
+                    pageSize += this._buffer.readUInt8(offset + 27 + i);
+                }
+
+                firstByte = this._buffer.readUInt8(offset + 27 + pageSegments);
+                identifier = this._buffer.toString('utf8', offset + 27 + pageSegments + 1, offset + 27 + pageSegments + 1 + 6);
+
+                if (firstByte === 3 && identifier === 'vorbis') {
+                    if (this._offset + this._buffer.length < this._nextOggPageStart + pageSize) {
+                        return false;
+                    }
+
+                    this._buffer = Buffer.concat([
+                        this._buffer.slice(0, this._nextOggPageStart - this._offset),
+                        this._buffer.slice(this._nextOggPageStart + pageSize - this._offset)
+                    ], this._buffer.length - pageSize);
+
+                    this._nextOggPageStart += pageSize;
+                } else {
+                    this._nextOggPageStart += pageSize;
+                }
+            }
+        }
+    } else {
+        return false;
+    }
+
     if (this._isLastAnalysis && this._buffer.toString('utf8', this._buffer.length - 128, this._buffer.length - 125) === 'TAG') {
         this._buffer = this._buffer.slice(0, -128);
     }
@@ -164,6 +267,7 @@ StripStream.prototype._transform = function (chunk, encoding, callback) {
 
     if (this._analyzeBuffer()) {
         this.push(this._buffer.slice(0, -128));
+        this._offset += this._buffer.length - 128;
         this._buffer = this._buffer.slice(-128);
     }
 

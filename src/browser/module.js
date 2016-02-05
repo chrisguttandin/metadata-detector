@@ -45,6 +45,58 @@ function locate(arrayBuffer) {
         ]);
     }
 
+    dataView = new DataView(arrayBuffer, 0, 4);
+
+    if (textEncoder.decode(dataView) === 'OggS') {
+        let offset = 0,
+            streamStructureVersion;
+
+        dataView = new DataView(arrayBuffer, 4, 1);
+
+        streamStructureVersion = dataView.getUint8(0);
+
+        while (streamStructureVersion === 0 && offset < arrayBuffer.byteLength) {
+            let firstByte,
+                pageSegments,
+                pageSize;
+
+            dataView = new DataView(arrayBuffer, offset + 5, 22);
+
+            // @todo Make sure the headerTypeFlag is not indicating that this is the first or last
+            // page. If so the surrounding pages would need to get an updated headerTypeFlag when
+            // stripping the metadata.
+            // headerTypeFlag = dataView.getUint8(0);
+            pageSegments = dataView.getUint8(21);
+
+            dataView = new DataView(arrayBuffer, offset + 27, pageSegments + 1);
+
+            pageSize = 27 + pageSegments;
+
+            for (let i = 0; i < pageSegments; i += 1) {
+                pageSize += dataView.getUint8(i);
+            }
+
+            firstByte = dataView.getUint8(pageSegments);
+
+            if (firstByte === 3) {
+                let identifier;
+
+                dataView = new DataView(arrayBuffer, offset + 27 + pageSegments + 1, 6);
+
+                identifier = textEncoder.decode(dataView);
+
+                if (identifier === 'vorbis') {
+                    locations.push([
+                        offset,
+                        offset + pageSize
+                    ]);
+                }
+            }
+
+            offset += pageSize;
+        }
+    }
+
     dataView = new DataView(arrayBuffer, arrayBuffer.byteLength - 128, 3);
 
     if (textEncoder.decode(dataView) === 'TAG') {
@@ -57,27 +109,41 @@ function locate(arrayBuffer) {
     return locations;
 }
 
+function concat(...arrayBuffers) {
+    return arrayBuffers
+        .reduce(({ array, offset }, arrayBuffer) => {
+            array.set(new Uint8Array(arrayBuffer), offset);
+
+            offset += arrayBuffer.byteLength;
+
+            return { array, offset };
+        }, {
+            array: new Uint8Array(arrayBuffers
+                .reduce((byteLength, arrayBuffer) => byteLength + arrayBuffer.byteLength, 0)),
+            offset: 0
+        })
+        .array.buffer;
+};
+
 function strip(arrayBuffer) {
-    var begin,
-        end,
-        locations;
+    var locations,
+        offset = 0;
 
     locations = locate(arrayBuffer);
 
-    begin = 0;
-    end = arrayBuffer.byteLength;
-
-    locations.forEach(function (location) {
-        if (location[0] === 0) {
-            begin = location[1];
+    locations.forEach(([begin, end]) => {
+        if (begin === offset) {
+            arrayBuffer = arrayBuffer.slice(end, arrayBuffer.byteLength);
+        } else if (end - offset === arrayBuffer.byteLength) {
+            arrayBuffer = arrayBuffer.slice(0, begin - offset);
+        } else {
+            arrayBuffer = concat(arrayBuffer.slice(0, begin - offset), arrayBuffer.slice(end - offset, arrayBuffer.byteLength));
         }
 
-        if (location[1] === end) {
-            end = location[0];
-        }
+        offset += end - begin;
     });
 
-    return arrayBuffer.slice(begin, end);
+    return arrayBuffer;
 }
 
 module.exports.locate = locate;
