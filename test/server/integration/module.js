@@ -11,6 +11,10 @@ describe('metadata-detector', function () {
 
         leche.withData(locationsData, function (filename, locations) {
 
+            if (filename.slice(-4) === '.txt') {
+                filename = filename.slice(0, -4);
+            }
+
             it('should locate the metadata tags of the file', function (done) {
                 var lctns = [],
                     locateStream = metadataDetector.createLocateStream(),
@@ -40,6 +44,10 @@ describe('metadata-detector', function () {
     describe('createStripStream()', function () {
 
         leche.withData(lengthsData, function (filename, byteLength) {
+
+            if (filename.slice(-4) === '.txt') {
+                filename = filename.slice(0, -4);
+            }
 
             it('should strip the metadata tags from the file', function (done) {
                 var btLngth = 0,

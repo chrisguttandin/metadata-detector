@@ -34,6 +34,32 @@ function locate(arrayBuffer) {
         ]);
     }
 
+    dataView = new DataView(arrayBuffer, 4, 4);
+
+    if (textEncoder.decode(dataView) === 'ftyp') {
+        let offset = 0;
+
+        while (offset < arrayBuffer.byteLength) {
+            let atom,
+                length;
+
+            dataView = new DataView(arrayBuffer, offset, 4);
+            length = dataView.getUint32(0);
+
+            dataView = new DataView(arrayBuffer, offset + 4, 4);
+            atom = textEncoder.decode(dataView);
+
+            if (atom === 'moov' || atom === 'wide') {
+                locations.push([
+                    offset,
+                    offset + length
+                ]);
+            }
+
+            offset += length;
+        }
+    }
+
     dataView = new DataView(arrayBuffer, 0, 3);
 
     if (textEncoder.decode(dataView) === 'ID3') {

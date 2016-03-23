@@ -12,6 +12,7 @@ function LocateStream (options) {
     this._buffer = new Buffer(0);
     this._isFirstAnalysis = true;
     this._isLastAnalysis = false;
+    this._nextMpeg4AtomStart = 0;
     this._nextOggPageStart = 0;
     this._offset = 0;
 }
@@ -19,7 +20,7 @@ function LocateStream (options) {
 util.inherits(LocateStream, Writable);
 
 LocateStream.prototype._analyzeBuffer = function () {
-    if (this._isFirstAnalysis && this._buffer.length < 4) {
+    if (this._isFirstAnalysis && this._buffer.length < 8) {
         return false;
     }
 
@@ -45,6 +46,33 @@ LocateStream.prototype._analyzeBuffer = function () {
             0,
             offset + length
         ]);
+    }
+
+    if ((this._isFirstAnalysis && this._buffer.toString('utf8', 4, 8) === 'ftyp') ||
+            (this._nextMpeg4AtomStart > 0)) {
+        let offset = this._nextMpeg4AtomStart - this._offset;
+
+        while (this._buffer.length > offset + 8) {
+            let atom,
+                length;
+
+            length = this._buffer.readUInt32BE(offset);
+            atom = this._buffer.toString('utf8', offset + 4, offset + 8);
+
+            if (atom === 'moov' || atom === 'wide') {
+                this.emit('location', [
+                    this._nextMpeg4AtomStart,
+                    this._nextMpeg4AtomStart + length
+                ]);
+            }
+
+            this._nextMpeg4AtomStart += length;
+            offset += length;
+        }
+
+        if (this._buffer.length - 8 < offset) {
+            return false;
+        }
     }
 
     if (this._isFirstAnalysis && this._buffer.toString('utf8', 0, 3) === 'ID3') {
@@ -145,6 +173,7 @@ function StripStream (options) {
     this._buffer = new Buffer(0);
     this._isFirstAnalysis = true;
     this._isLastAnalysis = false;
+    this._nextMpeg4AtomStart = 0;
     this._nextOggPageStart = 0;
     this._offset = 0;
 }
@@ -152,7 +181,7 @@ function StripStream (options) {
 util.inherits(StripStream, Transform);
 
 StripStream.prototype._analyzeBuffer = function () {
-    if (this._isFirstAnalysis && this._buffer.length < 4) {
+    if (this._isFirstAnalysis && this._buffer.length < 8) {
         return false;
     }
 
@@ -178,6 +207,39 @@ StripStream.prototype._analyzeBuffer = function () {
             this._buffer = this._buffer.slice(offset + length);
         } else {
             return false;
+        }
+    }
+
+    if ((this._isFirstAnalysis && this._buffer.toString('utf8', 4, 8) === 'ftyp') ||
+            (this._nextMpeg4AtomStart > 0)) {
+        let offset = this._nextMpeg4AtomStart - this._offset;
+
+        while (this._buffer.length > offset + 8) {
+            let atom,
+                length;
+
+            length = this._buffer.readUInt32BE(offset);
+            atom = this._buffer.toString('utf8', offset + 4, offset + 8);
+
+            if (atom === 'moov' || atom === 'wide') {
+                if (this._buffer.length >= offset + length) {
+                    this._buffer = Buffer.concat([
+                        this._buffer.slice(0, offset),
+                        this._buffer.slice(offset + length)
+                    ], this._buffer.length - length);
+                } else {
+                    return false;
+                }
+            } else {
+                this._nextMpeg4AtomStart += length;
+                offset += length;
+            }
+        }
+
+        if (this._buffer.length - 8 > offset) {
+            return false;
+        } else {
+            return true;
         }
     }
 
@@ -266,9 +328,11 @@ StripStream.prototype._transform = function (chunk, encoding, callback) {
     this._buffer = Buffer.concat([this._buffer, chunk], this._buffer.length + chunk.length);
 
     if (this._analyzeBuffer()) {
-        this.push(this._buffer.slice(0, -128));
-        this._offset += this._buffer.length - 128;
-        this._buffer = this._buffer.slice(-128);
+        let offset = Math.min(this._buffer.length, 128);
+
+        this.push(this._buffer.slice(0, -offset));
+        this._offset += this._buffer.length - offset;
+        this._buffer = this._buffer.slice(-offset);
     }
 
     callback();
