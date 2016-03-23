@@ -37,7 +37,7 @@ LocateStream.prototype._analyzeBuffer = function () {
             }
 
             /* eslint-disable no-bitwise */
-            isLast = ((this._buffer.readUInt8(offset + 0) & 0x80) !== 0);
+            isLast = ((this._buffer.readUInt8(offset) & 0x80) !== 0);
             length = ((this._buffer.readUInt8(offset + 3) | (this._buffer.readUInt8(offset + 2) << 8) | (this._buffer.readUInt8(offset + 1) << 16)) + 4);
             /* eslint-enable no-bitwise */
         }
@@ -198,7 +198,7 @@ StripStream.prototype._analyzeBuffer = function () {
             }
 
             /* eslint-disable no-bitwise */
-            isLast = ((this._buffer.readUInt8(offset + 0) & 0x80) !== 0);
+            isLast = ((this._buffer.readUInt8(offset) & 0x80) !== 0);
             length = ((this._buffer.readUInt8(offset + 3) | (this._buffer.readUInt8(offset + 2) << 8) | (this._buffer.readUInt8(offset + 1) << 16)) + 4);
             /* eslint-enable no-bitwise */
         }

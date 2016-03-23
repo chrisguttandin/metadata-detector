@@ -35,7 +35,7 @@ LocateStream.prototype._analyzeBuffer = function () {
             }
 
             /* jshint bitwise: false */
-            isLast = (this._buffer.readUInt8(offset + 0) & 0x80) !== 0;
+            isLast = (this._buffer.readUInt8(offset) & 0x80) !== 0;
             length = (this._buffer.readUInt8(offset + 3) | this._buffer.readUInt8(offset + 2) << 8 | this._buffer.readUInt8(offset + 1) << 16) + 4;
             /* jshint bitwise: true */
         }
@@ -109,7 +109,7 @@ StripStream.prototype._analyzeBuffer = function () {
             }
 
             /* jshint bitwise: false */
-            isLast = (this._buffer.readUInt8(offset + 0) & 0x80) !== 0;
+            isLast = (this._buffer.readUInt8(offset) & 0x80) !== 0;
             length = (this._buffer.readUInt8(offset + 3) | this._buffer.readUInt8(offset + 2) << 8 | this._buffer.readUInt8(offset + 1) << 16) + 4;
             /* jshint bitwise: true */
         }
