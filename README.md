@@ -6,4 +6,5 @@ This module is currently capable of handling [ID3](http://id3.org/Home) tags wit
 metadata of FLAC files as described in the official
 [FLAC format specification](http://xiph.org/flac/format.html). It can also parse
 [Vorbis Comments](https://xiph.org/vorbis/doc/v-comment.html) within
-[OGG Containers](https://xiph.org/ogg).
+[OGG Containers](https://xiph.org/ogg). In addition to that it can also parse MPEG-4 files which are
+nicely explained on the homepage of [AtomicParsley](http://atomicparsley.sourceforge.net).
