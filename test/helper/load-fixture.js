@@ -4,7 +4,7 @@ function base64ToArrayBuffer(encodedData) {
     var decodedData,
         uint8Array;
 
-    decodedData = atob(encodedData); // eslint-disable-line no-undef
+    decodedData = atob(encodedData.replace(/\s/g, '')); // eslint-disable-line no-undef
     uint8Array = new Uint8Array(decodedData.length);
 
     Array.prototype.forEach.call(uint8Array, function (value, index) {

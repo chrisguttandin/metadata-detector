@@ -1,13 +1,31 @@
 {
   "author": "Christoph Guttandin",
-  "browser": "build/browser/module.js",
+  "browser": "src/browser/module.js",
+  "browserify": {
+    "transform": [
+      [
+        "babelify",
+        {
+          "plugins": [
+            "transform-es2015-arrow-functions",
+            "transform-es2015-block-scoping",
+            "transform-es2015-parameters"
+          ]
+        }
+      ]
+    ]
+  },
   "dependencies": {
+    "babel-plugin-transform-es2015-arrow-functions": "^6.8.0",
+    "babel-plugin-transform-es2015-block-scoping": "^6.8.0",
+    "babel-plugin-transform-es2015-parameters": "^6.8.0",
+    "babelify": "^7.3.0",
+    "browserify": "^13.0.1",
     "synchsafe": "0.0.0"
   },
   "description": "A simple tool to locate and strip metadata from files.",
   "devDependencies": {
     "babel-eslint": "^6.0.4",
-    "babel-plugin-transform-es2015-block-scoping": "^6.4.0",
     "chai": "^3.5.0",
     "eslint-config-holy-grail": "^2.0.0",
     "grunt": "^1.0.1",
@@ -24,6 +42,7 @@
     "karma-firefox-launcher": "^1.0.0",
     "karma-leche": "0.0.3",
     "karma-mocha": "^1.0.1",
+    "karma-safari-launcher": "^1.0.0",
     "karma-sinon-chai": "^1.1.0",
     "leche": "^2.1.1",
     "load-grunt-config": "^0.19.1",

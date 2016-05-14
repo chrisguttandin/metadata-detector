@@ -1,18 +1,29 @@
 'use strict';
 
-var synchsafe = require('synchsafe');
+var synchsafe = require('synchsafe'),
+    textDecoder = null;
+
+function decode(dataView) {
+    if ('TextDecoder' in window) { // eslint-disable-line no-undef
+        if (textDecoder === null) {
+            textDecoder = new TextDecoder('utf-8'); // eslint-disable-line no-undef
+        }
+
+        return textDecoder.decode(dataView);
+    }
+
+    return String.fromCharCode.apply(null, new Uint8Array(dataView.buffer, dataView.byteOffset, dataView.byteLength));
+}
 
 function locate(arrayBuffer) {
     var dataView,
-        locations,
-        textEncoder;
+        locations;
 
     locations = [];
-    textEncoder = new TextDecoder('utf-8'); // eslint-disable-line no-undef
 
     dataView = new DataView(arrayBuffer, 0, 4);
 
-    if (textEncoder.decode(dataView) === 'fLaC') {
+    if (decode(dataView) === 'fLaC') {
         let isLast = false,
             length = 0,
             offset = 4;
@@ -36,7 +47,7 @@ function locate(arrayBuffer) {
 
     dataView = new DataView(arrayBuffer, 4, 4);
 
-    if (textEncoder.decode(dataView) === 'ftyp') {
+    if (decode(dataView) === 'ftyp') {
         let offset = 0;
 
         while (offset < arrayBuffer.byteLength) {
@@ -47,7 +58,7 @@ function locate(arrayBuffer) {
             length = dataView.getUint32(0);
 
             dataView = new DataView(arrayBuffer, offset + 4, 4);
-            atom = textEncoder.decode(dataView);
+            atom = decode(dataView);
 
             if (atom === 'moov' || atom === 'wide') {
                 locations.push([
@@ -62,7 +73,7 @@ function locate(arrayBuffer) {
 
     dataView = new DataView(arrayBuffer, 0, 3);
 
-    if (textEncoder.decode(dataView) === 'ID3') {
+    if (decode(dataView) === 'ID3') {
         dataView = new DataView(arrayBuffer, 6, 4);
 
         locations.push([
@@ -73,7 +84,7 @@ function locate(arrayBuffer) {
 
     dataView = new DataView(arrayBuffer, 0, 4);
 
-    if (textEncoder.decode(dataView) === 'OggS') {
+    if (decode(dataView) === 'OggS') {
         let offset = 0,
             streamStructureVersion;
 
@@ -109,7 +120,7 @@ function locate(arrayBuffer) {
 
                 dataView = new DataView(arrayBuffer, offset + 27 + pageSegments + 1, 6);
 
-                identifier = textEncoder.decode(dataView);
+                identifier = decode(dataView);
 
                 if (identifier === 'vorbis') {
                     locations.push([
@@ -125,7 +136,7 @@ function locate(arrayBuffer) {
 
     dataView = new DataView(arrayBuffer, arrayBuffer.byteLength - 128, 3);
 
-    if (textEncoder.decode(dataView) === 'TAG') {
+    if (decode(dataView) === 'TAG') {
         locations.push([
             arrayBuffer.byteLength - 128,
             arrayBuffer.byteLength

@@ -7,8 +7,11 @@ module.exports = function (config) {
         basePath: '../../',
 
         browsers: [
+            'Chrome',
             'ChromeCanary',
-            'FirefoxDeveloper'
+            'Firefox',
+            'FirefoxDeveloper',
+            'Safari'
         ],
 
         files: [
