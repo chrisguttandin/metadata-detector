@@ -2,6 +2,10 @@
 
 **A simple tool to locate and strip metadata from files.**
 
+[![tests](https://img.shields.io/travis/chrisguttandin/metadata-detector/master.svg?style=flat-square)](https://travis-ci.org/chrisguttandin/metadata-detector)
+[![dependencies](https://img.shields.io/david/chrisguttandin/metadata-detector.svg?style=flat-square)](https://www.npmjs.com/package/metadata-detector)
+[![version](https://img.shields.io/npm/v/metadata-detector.svg?style=flat-square)](https://www.npmjs.com/package/metadata-detector)
+
 This module is currently capable of handling [ID3](http://id3.org/Home) tags within MP3s and
 metadata of FLAC files as described in the official
 [FLAC format specification](http://xiph.org/flac/format.html). It can also parse
