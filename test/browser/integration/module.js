@@ -1,5 +1,3 @@
-'use strict';
-
 var lengthsData = require('../../fixtures/lengths-data.json'),
     loadFixture = require('../../helper/load-fixture.js'),
     locationsData = require('../../fixtures/locations-data.json'),

@@ -1,5 +1,3 @@
-'use strict';
-
 var synchsafe = require('synchsafe'),
     textDecoder = null;
 

@@ -1,5 +1,3 @@
-'use strict';
-
 var Buffer = require('buffer').Buffer,
     synchsafe = require('synchsafe'),
     Transform = require('stream').Transform,

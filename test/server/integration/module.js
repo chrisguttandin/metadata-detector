@@ -1,5 +1,3 @@
-'use strict';
-
 var createReadStream = require('fs').createReadStream,
     lengthsData = require('../../fixtures/lengths-data.json'),
     locationsData = require('../../fixtures/locations-data.json'),

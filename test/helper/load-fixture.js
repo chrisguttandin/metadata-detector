@@ -1,5 +1,3 @@
-'use strict';
-
 function base64ToArrayBuffer(encodedData) {
     var decodedData,
         uint8Array;
