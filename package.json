@@ -9,7 +9,8 @@
           "plugins": [
             "transform-es2015-arrow-functions",
             "transform-es2015-block-scoping",
-            "transform-es2015-parameters"
+            "transform-es2015-parameters",
+            "transform-es2015-shorthand-properties"
           ]
         }
       ]
@@ -19,6 +20,7 @@
     "babel-plugin-transform-es2015-arrow-functions": "^6.8.0",
     "babel-plugin-transform-es2015-block-scoping": "^6.8.0",
     "babel-plugin-transform-es2015-parameters": "^6.8.0",
+    "babel-plugin-transform-es2015-shorthand-properties": "^6.8.0",
     "babelify": "^7.3.0",
     "browserify": "^13.0.1",
     "synchsafe": "0.0.0"
