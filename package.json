@@ -9,6 +9,7 @@
           "plugins": [
             "transform-es2015-arrow-functions",
             "transform-es2015-block-scoping",
+            "transform-es2015-destructuring",
             "transform-es2015-parameters",
             "transform-es2015-shorthand-properties"
           ]
@@ -28,6 +29,7 @@
   "description": "A simple tool to locate and strip metadata from files.",
   "devDependencies": {
     "babel-eslint": "^6.0.4",
+    "babel-plugin-transform-es2015-destructuring": "^6.9.0",
     "chai": "^3.5.0",
     "eslint-config-holy-grail": "^3.0.0",
     "grunt": "^1.0.1",
