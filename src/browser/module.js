@@ -7,10 +7,10 @@ function decode(dataView) {
             textDecoder = new TextDecoder('utf-8'); // eslint-disable-line no-undef
         }
 
-        return textDecoder.decode(dataView);
+        return textDecoder.decode(dataView); // eslint-disable-line newline-before-return
     }
 
-    return String.fromCharCode.apply(null, new Uint8Array(dataView.buffer, dataView.byteOffset, dataView.byteLength));
+    return String.fromCharCode.apply(null, new Uint8Array(dataView.buffer, dataView.byteOffset, dataView.byteLength)); // eslint-disable-line newline-before-return
 }
 
 function locate(arrayBuffer) {
