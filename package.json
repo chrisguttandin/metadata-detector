@@ -44,7 +44,7 @@
     "karma-browserify": "^5.0.1",
     "karma-chrome-launcher": "^1.0.1",
     "karma-firefox-launcher": "^1.0.0",
-    "karma-leche": "0.0.4",
+    "karma-leche": "0.0.5",
     "karma-mocha": "^1.0.1",
     "karma-safari-launcher": "^1.0.0",
     "karma-sauce-launcher": "^1.0.0",
