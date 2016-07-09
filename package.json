@@ -31,7 +31,7 @@
   },
   "description": "A simple tool to locate and strip metadata from files.",
   "devDependencies": {
-    "babel-eslint": "^6.1.1",
+    "babel-eslint": "^6.1.2",
     "babel-plugin-transform-es2015-destructuring": "^6.9.0",
     "chai": "^3.5.0",
     "eslint-config-holy-grail": "^5.0.0",
