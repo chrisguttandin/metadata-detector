@@ -1,19 +1,20 @@
-var synchsafe = require('synchsafe'),
-    textDecoder = null;
+import synchsafe from 'synchsafe';
 
-function decode(dataView) {
-    if ('TextDecoder' in window) { // eslint-disable-line no-undef
+var textDecoder = null;
+
+const decode = (dataView) => {
+    if ('TextDecoder' in window) {
         if (textDecoder === null) {
-            textDecoder = new TextDecoder('utf-8'); // eslint-disable-line no-undef
+            textDecoder = new TextDecoder('utf-8');
         }
 
         return textDecoder.decode(dataView); // eslint-disable-line newline-before-return
     }
 
     return String.fromCharCode.apply(null, new Uint8Array(dataView.buffer, dataView.byteOffset, dataView.byteLength)); // eslint-disable-line newline-before-return
-}
+};
 
-function locate(arrayBuffer) {
+export const locate = (arrayBuffer) => {
     var dataView,
         locations;
 
@@ -142,9 +143,9 @@ function locate(arrayBuffer) {
     }
 
     return locations;
-}
+};
 
-function concat(...arrayBuffers) {
+const concat = (...arrayBuffers) => {
     return arrayBuffers
         .reduce(({ array, offset }, arrayBuffer) => {
             array.set(new Uint8Array(arrayBuffer), offset);
@@ -160,7 +161,7 @@ function concat(...arrayBuffers) {
         .array.buffer;
 };
 
-function strip(arrayBuffer) {
+export const strip = (arrayBuffer) => {
     var locations,
         offset = 0;
 
@@ -179,8 +180,4 @@ function strip(arrayBuffer) {
     });
 
     return arrayBuffer;
-}
-
-module.exports.locate = locate;
-
-module.exports.strip = strip;
+};
