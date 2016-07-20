@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-    all: {
+    default: {
         'pre-commit': 'lint'
     }
 };
