@@ -5,14 +5,12 @@ module.exports = {
         'clean:build',
         'babel:build'
     ],
-    continuous: [
-        'karma:continuous'
-    ],
     lint: [
         'eslint'
     ],
     test: [
-        'karma:test',
-        'mochaTest:test'
+        'build',
+        'karma:test',       // run browser tests
+        'mochaTest:test',   // run tests on Node.js
     ]
 };

@@ -1,4 +1,5 @@
 var createReadStream = require('fs').createReadStream,
+    leche = require('leche'),
     lengthsData = require('../../fixtures/lengths-data.json'),
     locationsData = require('../../fixtures/locations-data.json'),
     metadataDetector = require('../../../src/server/module.js');

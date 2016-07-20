@@ -23,7 +23,7 @@ describe('metadata-detector', function () {
 
     describe('locate()', function () {
 
-        leche.withData(locationsData, function (filename, locations) {
+        leche.withData(locationsData, function (filename, locations) { // eslint-disable-line no-undef
 
             it('should locate the metadata tags of the file', function (done) {
                 loadFixture(filename, function (err, arrayBuffer) {
@@ -41,7 +41,7 @@ describe('metadata-detector', function () {
 
     describe('strip()', function () {
 
-        leche.withData(lengthsData, function (filename, byteLength) {
+        leche.withData(lengthsData, function (filename, byteLength) { // eslint-disable-line no-undef
 
             it('should strip the metadata tags from the file', function (done) {
                 loadFixture(filename, function (err, arrayBuffer) {

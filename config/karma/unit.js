@@ -8,14 +8,23 @@ module.exports = function (config) {
             basePath: '../../',
 
             files: [
-                'src/browser/module.js',
                 {
+                    included: false,
+                    pattern: 'src/browser/**/*.js',
+                    served: false,
+                    watched: true
+                }, {
+                    included: false,
+                    pattern: 'src/common/**/*.js',
+                    served: false,
+                    watched: true
+                }, {
                     included: false,
                     pattern: 'test/fixtures/**',
                     served: true,
                     watched: true,
                 },
-                'test/browser/integration/**/*.js'
+                'test/integration/browser/**/*.js'
             ],
 
             frameworks: [
@@ -26,8 +35,7 @@ module.exports = function (config) {
             ],
 
             preprocessors: {
-                'src/browser/module.js': 'browserify',
-                'test/browser/integration/**/*.js': 'browserify'
+                'test/integration/browser/**/*.js': 'browserify'
             }
 
         };
