@@ -1,5 +1,7 @@
 'use strict';
 
+var babelOptions = require('../babel/build.json');
+
 module.exports = {
     build: {
         files: [{
@@ -7,13 +9,10 @@ module.exports = {
             dest: 'build/',
             expand: true,
             src: [
-                '**/*.js'
+                '**/*.js',
+                '!browser/**'
             ]
         }],
-        options: {
-            plugins: [
-                'transform-es2015-block-scoping'
-            ]
-        }
+        options: babelOptions
     }
 };
