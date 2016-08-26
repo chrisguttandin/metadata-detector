@@ -71,7 +71,7 @@
     "url": "https://github.com/chrisguttandin/metadata-detector.git"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt lint && grunt test"
   },
   "version": "2.0.1"
 }
