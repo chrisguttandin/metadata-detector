@@ -10,7 +10,7 @@ module.exports = {
     ],
     test: [
         'build',
-        'karma:test',       // run browser tests
-        'mochaTest:test',   // run tests on Node.js
+        'karma:test',
+        'mochaTest:test'
     ]
 };
