@@ -22,7 +22,7 @@ module.exports = {
                         }
 
                         return compiler(mdl, filename);
-                    }
+                    };
                 },
                 () => babelRegister(babelOptions),
                 () => global.expect = chai.expect
