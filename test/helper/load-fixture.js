@@ -1,4 +1,4 @@
-function base64ToArrayBuffer(encodedData) {
+function base64ToArrayBuffer (encodedData) {
     var decodedData,
         uint8Array;
 
@@ -12,7 +12,7 @@ function base64ToArrayBuffer(encodedData) {
     return uint8Array.buffer;
 }
 
-module.exports = function loadFixture(fixture, callback) {
+module.exports = function loadFixture (fixture, callback) {
     var request = new XMLHttpRequest();
 
     request.onerror = function () {
