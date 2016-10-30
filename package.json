@@ -41,10 +41,10 @@
     "grunt-babel": "^6.0.0",
     "grunt-cli": "^1.2.0",
     "grunt-contrib-clean": "^1.0.0",
-    "grunt-githooks": "^0.6.0",
     "grunt-karma": "^2.0.0",
     "grunt-mocha-test": "^0.13.0",
     "gruntify-eslint": "^3.0.0",
+    "husky": "^0.11.9",
     "karma": "^1.2.0",
     "karma-browserify": "^5.1.0",
     "karma-chrome-launcher": "^2.0.0",
@@ -71,6 +71,7 @@
     "url": "https://github.com/chrisguttandin/metadata-detector.git"
   },
   "scripts": {
+    "precommit": "grunt lint",
     "test": "grunt lint && grunt test"
   },
   "version": "2.0.1"
