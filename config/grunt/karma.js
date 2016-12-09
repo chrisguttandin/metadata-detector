@@ -2,7 +2,7 @@
 
 module.exports = {
     test: {
-        configFile: 'config/karma/unit.js',
+        configFile: 'config/karma/config.js',
         singleRun: true
     }
 };
