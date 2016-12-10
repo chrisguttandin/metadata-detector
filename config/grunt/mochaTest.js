@@ -1,9 +1,9 @@
 'use strict';
 
-var babelOptions = require('../babel/test.json'),
-    babelRegister = require('babel-register'),
-    chai = require('chai'),
-    fs = require('fs');
+const babelOptions = require('../babel/test.json');
+const babelRegister = require('babel-register');
+const chai = require('chai');
+const fs = require('fs');
 
 module.exports = {
     test: {
@@ -12,7 +12,7 @@ module.exports = {
             clearRequireCache: true,
             require: [
                 () => {
-                    var compiler = require.extensions['.js'];
+                    const compiler = require.extensions['.js'];
 
                     require.extensions['.js'] = function (mdl, filename) {
                         if (!filename.includes('node_modules') && filename.includes('src/')) {

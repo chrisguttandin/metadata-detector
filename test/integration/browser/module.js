@@ -1,7 +1,7 @@
-var lengthsData = require('../../fixtures/lengths-data.json'),
-    loadFixture = require('../../helper/load-fixture.js'),
-    locationsData = require('../../fixtures/locations-data.json'),
-    metadataDetector = require('../../../src/browser/module.js');
+const lengthsData = require('../../fixtures/lengths-data.json');
+const loadFixture = require('../../helper/load-fixture.js');
+const locationsData = require('../../fixtures/locations-data.json');
+const metadataDetector = require('../../../src/browser/module.js');
 
 describe('metadata-detector', function () {
 
