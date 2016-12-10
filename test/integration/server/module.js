@@ -1,8 +1,8 @@
-var createReadStream = require('fs').createReadStream,
-    leche = require('leche'),
-    lengthsData = require('../../fixtures/lengths-data.json'),
-    locationsData = require('../../fixtures/locations-data.json'),
-    metadataDetector = require('../../../src/server/module.js');
+const createReadStream = require('fs').createReadStream;
+const leche = require('leche');
+const lengthsData = require('../../fixtures/lengths-data.json');
+const locationsData = require('../../fixtures/locations-data.json');
+const metadataDetector = require('../../../src/server/module.js');
 
 describe('metadata-detector', function () {
 
@@ -15,11 +15,11 @@ describe('metadata-detector', function () {
             }
 
             it('should locate the metadata tags of the file', function (done) {
-                var lctns = [],
-                    locateStream = metadataDetector.createLocateStream(),
-                    readable = createReadStream('test/fixtures/' + filename, {
-                        highWaterMark: 128
-                    });
+                const lctns = [];
+                const locateStream = metadataDetector.createLocateStream();
+                const readable = createReadStream('test/fixtures/' + filename, {
+                    highWaterMark: 128
+                });
 
                 readable
                     .pipe(locateStream)
@@ -49,11 +49,12 @@ describe('metadata-detector', function () {
             }
 
             it('should strip the metadata tags from the file', function (done) {
-                var btLngth = 0,
-                    readable = createReadStream('test/fixtures/' + filename, {
-                        highWaterMark: 128
-                    }),
-                    stripStream = metadataDetector.createStripStream();
+                let btLngth = 0;
+
+                const readable = createReadStream('test/fixtures/' + filename, {
+                    highWaterMark: 128
+                });
+                const stripStream = metadataDetector.createStripStream();
 
                 readable
                     .pipe(stripStream)

@@ -21,9 +21,9 @@ class LocateStream extends Writable {
         }
 
         if (this._isFirstAnalysis && this._buffer.toString('utf8', 0, 4) === 'fLaC') {
-            let isLast = false,
-                length = 0,
-                offset = 4;
+            let isLast = false;
+            let length = 0;
+            let offset = 4;
 
             while (!isLast) {
                 offset += length;
@@ -49,11 +49,9 @@ class LocateStream extends Writable {
             let offset = this._nextMpeg4AtomStart - this._offset;
 
             while (this._buffer.length > offset + 8) {
-                let atom,
-                    length;
+                const length = this._buffer.readUInt32BE(offset);
 
-                length = this._buffer.readUInt32BE(offset);
-                atom = this._buffer.toString('utf8', offset + 4, offset + 8);
+                const atom = this._buffer.toString('utf8', offset + 4, offset + 8);
 
                 if (atom === 'moov' || atom === 'wide') {
                     this.emit('location', [
@@ -79,24 +77,19 @@ class LocateStream extends Writable {
         }
 
         if (this._offset + this._buffer.length > this._nextOggPageStart + 4) {
-            let offset = this._nextOggPageStart - this._offset;
+            const offset = this._nextOggPageStart - this._offset;
 
             if (this._buffer.toString('utf8', offset, offset + 4) === 'OggS') {
-                let streamStructureVersion;
-
                 if (this._offset + this._buffer.length < this._nextOggPageStart + 27) {
                     return false;
                 }
 
-                streamStructureVersion = this._buffer.readUInt8(offset + 4);
+                const streamStructureVersion = this._buffer.readUInt8(offset + 4);
 
                 if (streamStructureVersion === 0) {
-                    let firstByte,
-                        pageSegments,
-                        pageSize;
+                    const pageSegments = this._buffer.readUInt8(offset + 26);
 
-                    pageSegments = this._buffer.readUInt8(offset + 26);
-                    pageSize = 27 + pageSegments;
+                    let pageSize = 27 + pageSegments;
 
                     if (this._offset + this._buffer.length < this._nextOggPageStart + 28 + pageSegments + 1 + 6) {
                         return false;
@@ -106,10 +99,10 @@ class LocateStream extends Writable {
                         pageSize += this._buffer.readUInt8(offset + 27 + i);
                     }
 
-                    firstByte = this._buffer.readUInt8(offset + 27 + pageSegments);
+                    const firstByte = this._buffer.readUInt8(offset + 27 + pageSegments);
 
                     if (firstByte === 3) {
-                        let identifier = this._buffer.toString('utf8', offset + 27 + pageSegments + 1, offset + 27 + pageSegments + 1 + 6);
+                        const identifier = this._buffer.toString('utf8', offset + 27 + pageSegments + 1, offset + 27 + pageSegments + 1 + 6);
 
                         if (identifier === 'vorbis') {
                             this.emit('location', [
@@ -182,9 +175,9 @@ class StripStream extends Transform {
         }
 
         if (this._isFirstAnalysis && this._buffer.toString('utf8', 0, 4) === 'fLaC') {
-            let isLast = false,
-                length = 0,
-                offset = 4;
+            let isLast = false;
+            let length = 0;
+            let offset = 4;
 
             while (!isLast) {
                 offset += length;
@@ -211,11 +204,8 @@ class StripStream extends Transform {
             let offset = this._nextMpeg4AtomStart - this._offset;
 
             while (this._buffer.length > offset + 8) {
-                let atom,
-                    length;
-
-                length = this._buffer.readUInt32BE(offset);
-                atom = this._buffer.toString('utf8', offset + 4, offset + 8);
+                const length = this._buffer.readUInt32BE(offset);
+                const atom = this._buffer.toString('utf8', offset + 4, offset + 8);
 
                 if (atom === 'moov' || atom === 'wide') {
                     if (this._buffer.length >= offset + length) {
@@ -240,7 +230,7 @@ class StripStream extends Transform {
         }
 
         if (this._isFirstAnalysis && this._buffer.toString('utf8', 0, 3) === 'ID3') {
-            let nextByte = synchsafe.decode(this._buffer.readUInt32BE(6)) + 10;
+            const nextByte = synchsafe.decode(this._buffer.readUInt32BE(6)) + 10;
 
             if (this._buffer.length >= nextByte) {
                 this._buffer = this._buffer.slice(nextByte);
@@ -250,25 +240,19 @@ class StripStream extends Transform {
         }
 
         if (this._offset + this._buffer.length > this._nextOggPageStart + 4) {
-            let offset = this._nextOggPageStart - this._offset;
+            const offset = this._nextOggPageStart - this._offset;
 
             if (this._buffer.toString('utf8', offset, offset + 4) === 'OggS') {
-                let streamStructureVersion;
-
                 if (this._offset + this._buffer.length < this._nextOggPageStart + 27) {
                     return false;
                 }
 
-                streamStructureVersion = this._buffer.readUInt8(offset + 4);
+                const streamStructureVersion = this._buffer.readUInt8(offset + 4);
 
                 if (streamStructureVersion === 0) {
-                    let firstByte,
-                        identifier,
-                        pageSegments,
-                        pageSize;
+                    const pageSegments = this._buffer.readUInt8(offset + 26);
 
-                    pageSegments = this._buffer.readUInt8(offset + 26);
-                    pageSize = 27 + pageSegments;
+                    let pageSize = 27 + pageSegments;
 
                     if (this._offset + this._buffer.length < this._nextOggPageStart + 28 + pageSegments + 1 + 6) {
                         return false;
@@ -278,8 +262,8 @@ class StripStream extends Transform {
                         pageSize += this._buffer.readUInt8(offset + 27 + i);
                     }
 
-                    firstByte = this._buffer.readUInt8(offset + 27 + pageSegments);
-                    identifier = this._buffer.toString('utf8', offset + 27 + pageSegments + 1, offset + 27 + pageSegments + 1 + 6);
+                    const firstByte = this._buffer.readUInt8(offset + 27 + pageSegments);
+                    const identifier = this._buffer.toString('utf8', offset + 27 + pageSegments + 1, offset + 27 + pageSegments + 1 + 6);
 
                     if (firstByte === 3 && identifier === 'vorbis') {
                         if (this._offset + this._buffer.length < this._nextOggPageStart + pageSize) {
@@ -324,7 +308,7 @@ class StripStream extends Transform {
         this._buffer = Buffer.concat([this._buffer, chunk], this._buffer.length + chunk.length);
 
         if (this._analyzeBuffer()) {
-            let offset = Math.min(this._buffer.length, 128);
+            const offset = Math.min(this._buffer.length, 128);
 
             this.push(this._buffer.slice(0, -offset));
             this._offset += this._buffer.length - offset;

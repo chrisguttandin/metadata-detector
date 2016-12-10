@@ -1,6 +1,6 @@
 'use strict';
 
-var babelOptions = require('../babel/build.json');
+const babelOptions = require('../babel/build.json');
 
 module.exports = {
     build: {
