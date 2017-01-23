@@ -1,5 +1,8 @@
 import synchsafe from 'synchsafe';
 
+// @todo Remove this declaration when it becomes available in the dom lib.
+declare var TextDecoder: any;
+
 let textDecoder = null;
 
 const decode = (dataView) => {
@@ -8,10 +11,10 @@ const decode = (dataView) => {
             textDecoder = new TextDecoder('utf-8');
         }
 
-        return textDecoder.decode(dataView); // eslint-disable-line newline-before-return
+        return textDecoder.decode(dataView);
     }
 
-    return String.fromCharCode.apply(null, new Uint8Array(dataView.buffer, dataView.byteOffset, dataView.byteLength)); // eslint-disable-line newline-before-return
+    return String.fromCharCode.apply(null, new Uint8Array(dataView.buffer, dataView.byteOffset, dataView.byteLength));
 };
 
 export const locate = (arrayBuffer) => {
@@ -20,19 +23,17 @@ export const locate = (arrayBuffer) => {
     let dataView = new DataView(arrayBuffer, 0, 4);
 
     if (decode(dataView) === 'fLaC') {
-        let isLast = false,
-            length = 0,
-            offset = 4;
+        let isLast = false;
+        let length = 0;
+        let offset = 4;
 
         while (!isLast) {
             offset += length;
 
             dataView = new DataView(arrayBuffer, offset, 4);
 
-            /* eslint-disable no-bitwise */
-            isLast = ((dataView.getUint8(0) & 0x80) !== 0);
-            length = ((dataView.getUint8(3) | (dataView.getUint8(2) << 8) | (dataView.getUint8(1) << 16)) + 4);
-            /* eslint-enable no-bitwise */
+            isLast = ((dataView.getUint8(0) & 0x80) !== 0); // tslint:disable-line:no-bitwise
+            length = ((dataView.getUint8(3) | (dataView.getUint8(2) << 8) | (dataView.getUint8(1) << 16)) + 4); // tslint:disable-line:max-line-length no-bitwise
         }
 
         locations.push([
@@ -89,10 +90,11 @@ export const locate = (arrayBuffer) => {
         while (streamStructureVersion === 0 && offset < arrayBuffer.byteLength) {
             dataView = new DataView(arrayBuffer, offset + 5, 22);
 
-            // @todo Make sure the headerTypeFlag is not indicating that this is the first or last
-            // page. If so the surrounding pages would need to get an updated headerTypeFlag when
-            // stripping the metadata.
-            // headerTypeFlag = dataView.getUint8(0);
+            /* @todo Make sure the headerTypeFlag is not indicating that this is the first or last
+             * page. If so the surrounding pages would need to get an updated headerTypeFlag when
+             * stripping the metadata.
+             * headerTypeFlag = dataView.getUint8(0);
+             */
             const pageSegments = dataView.getUint8(21);
 
             dataView = new DataView(arrayBuffer, offset + 27, pageSegments + 1);

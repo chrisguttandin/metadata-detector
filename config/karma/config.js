@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = function (config) {
+module.exports = (config) => {
 
     config.set({
 
@@ -9,12 +7,7 @@ module.exports = function (config) {
         files: [
             {
                 included: false,
-                pattern: 'src/browser/**/*.js',
-                served: false,
-                watched: true
-            }, {
-                included: false,
-                pattern: 'src/common/**/*.js',
+                pattern: 'src/**',
                 served: false,
                 watched: true
             }, {
@@ -23,18 +16,35 @@ module.exports = function (config) {
                 served: true,
                 watched: true
             },
-            'test/integration/browser/**/*.js'
+            'test/integration/**/*.js'
         ],
 
         frameworks: [
-            'browserify',
             'leche',
             'mocha',
             'sinon-chai'
         ],
 
         preprocessors: {
-            'test/integration/browser/**/*.js': 'browserify'
+            'test/integration/**/*.js': 'webpack'
+        },
+
+        webpack: {
+            module: {
+                loaders: [
+                    {
+                        loader: 'ts-loader',
+                        test: /\.ts?$/
+                    }
+                ]
+            },
+            resolve: {
+                extensions: [ '.js', '.ts' ]
+            }
+        },
+
+        webpackMiddleware: {
+            noInfo: true
         }
 
     });

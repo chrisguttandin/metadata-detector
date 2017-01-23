@@ -1,7 +1,5 @@
-'use strict';
-
 module.exports = {
-    'config': {
+    config: {
         options: {
             configFile: 'config/eslint/config.json'
         },
@@ -10,31 +8,15 @@ module.exports = {
             'config/**/*.js'
         ]
     },
-    'src-browser': {
+    src: {
         options: {
-            configFile: 'config/eslint/src-browser.json'
+            configFile: 'config/eslint/src.json'
         },
         src: [
-            'src/browser/**/*.js'
+            'src/**/*.js'
         ]
     },
-    'src-common': {
-        options: {
-            configFile: 'config/eslint/src-common.json'
-        },
-        src: [
-            'src/**!(browser|server)/*.js'
-        ]
-    },
-    'src-server': {
-        options: {
-            configFile: 'config/eslint/src-server.json'
-        },
-        src: [
-            'src/server/**/*.js'
-        ]
-    },
-    'test': {
+    test: {
         options: {
             configFile: 'config/eslint/test.json'
         },

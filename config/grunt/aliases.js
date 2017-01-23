@@ -1,16 +1,17 @@
-'use strict';
-
 module.exports = {
     build: [
         'clean:build',
-        'babel:build'
+        'sh:build',
+        'uglify'
+    ],
+    continuous: [
+        'karma:continuous'
     ],
     lint: [
-        'eslint'
+        'eslint',
+        'tslint'
     ],
     test: [
-        'build',
-        'karma:test',
-        'mochaTest:test'
+        'karma:test'
     ]
 };

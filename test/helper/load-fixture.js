@@ -1,16 +1,16 @@
-function base64ToArrayBuffer (encodedData) {
+const base64ToArrayBuffer = (encodedData) => {
     const decodedData = atob(encodedData.replace(/\s/g, ''));
     const uint8Array = new Uint8Array(decodedData.length);
 
-    Array.prototype.forEach.call(uint8Array, function (value, index) {
+    Array.prototype.forEach.call(uint8Array, (value, index) => {
         uint8Array[index] = decodedData.charCodeAt(index);
     });
 
     return uint8Array.buffer;
-}
+};
 
-module.exports = function loadFixture (fixture, callback) {
-    const  request = new XMLHttpRequest();
+export const loadFixtureAsArrayBuffer = (fixture, callback) => {
+    const request = new XMLHttpRequest(); // eslint-disable-line no-undef
 
     request.onerror = function () {
         callback('request-failed');

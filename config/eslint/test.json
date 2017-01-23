@@ -1,14 +1,15 @@
 {
     "env": {
         "browser": true,
-        "mocha": true,
-        "node": true
+        "mocha": true
     },
     "extends": "eslint-config-holy-grail",
     "globals": {
         "expect": false
     },
-    "parser": "babel-eslint",
+    "parserOptions": {
+        "sourceType": "module"
+    },
     "rules": {
         "no-unused-expressions": 0
     }
