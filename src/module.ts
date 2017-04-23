@@ -1,7 +1,7 @@
 import synchsafe from 'synchsafe';
 
 // @todo Remove this declaration when it becomes available in the dom lib.
-declare var TextDecoder: any;
+declare const TextDecoder: any;
 
 let textDecoder = null;
 
