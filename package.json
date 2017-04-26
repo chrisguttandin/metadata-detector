@@ -49,9 +49,9 @@
     "src/"
   ],
   "homepage": "https://github.com/chrisguttandin/metadata-detector",
-  "jsnext:main": "build/es2015/module.js",
   "license": "MIT",
   "main": "build/es5/bundle.js",
+  "module": "build/es2015/module.js",
   "name": "metadata-detector",
   "repository": {
     "type": "git",
