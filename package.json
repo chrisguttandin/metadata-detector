@@ -4,7 +4,7 @@
     "url": "https://github.com/chrisguttandin/metadata-detector/issues"
   },
   "dependencies": {
-    "synchsafe": "0.0.0"
+    "synchsafe": "1.0.0"
   },
   "description": "A simple tool to locate and strip metadata from files.",
   "devDependencies": {
