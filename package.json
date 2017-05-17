@@ -4,7 +4,8 @@
     "url": "https://github.com/chrisguttandin/metadata-detector/issues"
   },
   "dependencies": {
-    "synchsafe": "0.0.0"
+    "metadata-detector-broker": "^1.0.0",
+    "metadata-detector-worker": "^1.0.2"
   },
   "description": "A simple tool to locate and strip metadata from files.",
   "devDependencies": {
@@ -12,11 +13,11 @@
     "chai": "^3.5.0",
     "eslint-config-holy-grail": "^17.0.0",
     "grunt": "^1.0.1",
-    "grunt-babel": "^6.0.0",
     "grunt-cli": "^1.2.0",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-uglify": "^3.0.0",
     "grunt-karma": "^2.0.0",
+    "grunt-replace": "^1.0.1",
     "grunt-sh": "^0.1.4",
     "grunt-tslint": "^5.0.0",
     "gruntify-eslint": "^3.0.0",
@@ -41,6 +42,7 @@
     "sinon-chai": "^2.8.0",
     "ts-loader": "^2.0.0",
     "tslint-config-holy-grail": "^8.0.0",
+    "typescript": "^2.3.2",
     "webpack": "^2.2.0"
   },
   "files": [

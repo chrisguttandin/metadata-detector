@@ -13,9 +13,13 @@ describe('metadata-detector', () => {
                 loadFixtureAsArrayBuffer(filename, (err, arrayBuffer) => {
                     expect(err).to.be.null;
 
-                    expect(metadataDetector.locate(arrayBuffer)).to.deep.equal(locations);
+                    metadataDetector
+                        .locate(arrayBuffer)
+                        .then((lctns) => {
+                            expect(lctns).to.deep.equal(locations);
 
-                    done();
+                            done();
+                        });
                 });
             });
 
@@ -31,11 +35,13 @@ describe('metadata-detector', () => {
                 loadFixtureAsArrayBuffer(filename, (err, arrayBuffer) => {
                     expect(err).to.be.null;
 
-                    arrayBuffer = metadataDetector.strip(arrayBuffer);
+                    metadataDetector
+                        .strip(arrayBuffer)
+                        .then((arrayBuffer) => {
+                            expect(arrayBuffer.byteLength).to.equal(byteLength);
 
-                    expect(arrayBuffer.byteLength).to.equal(byteLength);
-
-                    done();
+                            done();
+                        });
                 });
             });
 

@@ -1,6 +1,7 @@
 module.exports = {
     build: [
         'clean:build',
+        'replace:worker',
         'sh:build-es2015',
         'sh:build-es5',
         'sh:build-esm',
@@ -8,6 +9,7 @@ module.exports = {
         'uglify'
     ],
     continuous: [
+        'build',
         'karma:continuous'
     ],
     lint: [
@@ -16,6 +18,7 @@ module.exports = {
         'sh:lint'
     ],
     test: [
+        'build',
         'karma:test'
     ]
 };
