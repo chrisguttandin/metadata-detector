@@ -7,7 +7,7 @@ describe('metadata-detector', () => {
 
     describe('locate()', () => {
 
-        leche.withData(locationsData, (filename, locations) => { // eslint-disable-line no-undef
+        leche.withData(locationsData, (filename, locations) => {
 
             it('should locate the metadata tags of the file', (done) => {
                 loadFixtureAsArrayBuffer(filename, (err, arrayBuffer) => {
@@ -29,7 +29,7 @@ describe('metadata-detector', () => {
 
     describe('strip()', () => {
 
-        leche.withData(lengthsData, (filename, byteLength) => { // eslint-disable-line no-undef
+        leche.withData(lengthsData, (filename, byteLength) => {
 
             it('should strip the metadata tags from the file', (done) => {
                 loadFixtureAsArrayBuffer(filename, (err, arrayBuffer) => {
