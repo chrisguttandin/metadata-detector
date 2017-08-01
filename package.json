@@ -34,7 +34,7 @@
     "karma-webpack": "^2.0.4",
     "leche": "^2.2.1",
     "load-grunt-config": "^0.19.1",
-    "mocha": "^3.0.0",
+    "mocha": "^3.5.0",
     "rollup": "^0.45.2",
     "rollup-plugin-babel": "^2.7.1",
     "rollup-plugin-commonjs": "^8.0.0",
