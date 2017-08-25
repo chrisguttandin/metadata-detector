@@ -30,7 +30,7 @@
     "karma-leche": "0.0.13",
     "karma-mocha": "^1.1.0",
     "karma-safari-launcher": "^1.0.0",
-    "karma-sauce-launcher": "^1.0.0",
+    "karma-sauce-launcher": "^1.2.0",
     "karma-sinon-chai": "^1.2.4",
     "karma-webpack": "^2.0.4",
     "leche": "^2.2.1",
