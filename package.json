@@ -5,7 +5,8 @@
   },
   "dependencies": {
     "metadata-detector-broker": "^1.0.0",
-    "metadata-detector-worker": "^1.0.2"
+    "metadata-detector-worker": "^1.0.2",
+    "tslint": "^5.7.0"
   },
   "description": "A simple tool to locate and strip metadata from files.",
   "devDependencies": {
