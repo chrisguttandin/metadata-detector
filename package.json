@@ -4,7 +4,7 @@
     "url": "https://github.com/chrisguttandin/metadata-detector/issues"
   },
   "dependencies": {
-    "metadata-detector-broker": "^1.0.0",
+    "metadata-detector-broker": "^1.0.1",
     "metadata-detector-worker": "^1.0.2"
   },
   "description": "A simple tool to locate and strip metadata from files.",
