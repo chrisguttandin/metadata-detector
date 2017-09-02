@@ -5,7 +5,7 @@
   },
   "dependencies": {
     "metadata-detector-broker": "^1.0.2",
-    "metadata-detector-worker": "^1.0.3"
+    "metadata-detector-worker": "^1.0.4"
   },
   "description": "A simple tool to locate and strip metadata from files.",
   "devDependencies": {
