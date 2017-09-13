@@ -1,6 +1,6 @@
-import * as lengthsData from '../fixtures/lengths-data.json';
-import * as locationsData from '../fixtures/locations-data.json';
-import * as metadataDetector from '../../src/module';
+import * as lengthsData from '../fixtures/lengths-data.json';
+import * as locationsData from '../fixtures/locations-data.json';
+import * as metadataDetector from '../../src/module';
 import { loadFixtureAsArrayBuffer } from '../helper/load-fixture';
 
 describe('metadata-detector', () => {
