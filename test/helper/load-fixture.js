@@ -10,7 +10,7 @@ const base64ToArrayBuffer = (encodedData) => {
 };
 
 export const loadFixtureAsArrayBuffer = (fixture, callback) => {
-    const request = new XMLHttpRequest(); // eslint-disable-line no-undef
+    const request = new XMLHttpRequest();
 
     request.onerror = function () {
         callback('request-failed');
