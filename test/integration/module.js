@@ -37,8 +37,8 @@ describe('metadata-detector', () => {
 
                     metadataDetector
                         .strip(arrayBuffer)
-                        .then((arrayBuffer) => {
-                            expect(arrayBuffer.byteLength).to.equal(byteLength);
+                        .then((rryBffr) => {
+                            expect(rryBffr.byteLength).to.equal(byteLength);
 
                             done();
                         });
