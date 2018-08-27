@@ -10,3 +10,5 @@ const metadataDetector = load(url);
 export const locate = metadataDetector.locate;
 
 export const strip = metadataDetector.strip;
+
+URL.revokeObjectURL(url);
