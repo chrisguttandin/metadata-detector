@@ -1,0 +1,1 @@
+import 'metadata-detector-worker';
