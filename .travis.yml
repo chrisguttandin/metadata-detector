@@ -2,6 +2,7 @@ before_install: npm install npm@latest --global
 cache:
   directories:
     - $HOME/.npm
+dist: xenial
 env:
   global:
     - secure: JFpMTFJvD4kJGI6/3ia1/Ef+6t/mbwwKer7U1aJGoaqMGkl0mUwp781xssRxiShTK/a+pzngoLP6/AFmCI/Oss8Sr2fKLs2mDASvDRhNO+7XxC8Ir08CA/gjhHy5c3P5eHN9ynqU7vKQr0qmDfYTlkGMTPM5wxXHYdd3kY7UficOZHtJ+LZG2t/NLtHum0PspHYTZd6trrkErUh11VncbgZ7OqkFs41B+OK7z9eSU+6G3gEXq6JcfW3ZNkRcoWR5ghmSyf2Oq11tkPDwjSXLUUxe7Vqu8tVyWIUJv9Wnj3Ei+S9SLtFRM+f9dO34tVF2aCT9JeT/PaACS+BRFOPfE0lpZF6efCm3gwySg0GzLtF1O8vqGaZZoQqZw7WSzeXvenZDgaovyiozi3nhj9t7bfl2W/+GRa1USFmuD1yB25eyjWVriLqw2t8VSjwnDZ5mLT88tf7+17WWfM9Bz466A3w3D8su/JlhlXiKKkO6DWtiy6Pl+S2x2iu6FwSR53x63WTsJqEKBDeQ3ubwiChtmS6r9/7yHCeKl/rtn2uzWH+xrjhGCtjNxNX52oPl2L1wgXYomJQYqAMV7CckELotJNISkYO205iCBwVnvV2PHvBWXqLosrYLQAFpycgcJuTlHyg2YWkidnyJUqNcshyMFDFtYc5Q4Bl6jBZMNhFQkis=
@@ -10,4 +11,3 @@ env:
 install: npm ci || (rm -rf node_modules && npm install)
 language: node_js
 node_js: 11
-sudo: required
