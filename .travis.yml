@@ -10,4 +10,4 @@ env:
     - secure: c/EactkRr+zMua0pzMf/E5vmCSos7e3y7g+pJRDHnUCw7ZSeRcKmFvLk/+I+/OHUB8X170twdBrmLsALr+NP8j0hzBvtwTI9/gPQQbuVH3ugP2XP3N2rJIYAnE8uO8EUgm+e4OlsiNrqbGieRmbtHBOtJRcM51yRhobyaPQwdXFbouIc+Yx6imvBGUSo7NTmnjz2I/r1nxhOc1hdkezsGJikd5atztYZ8KI0OyOf3ip+z2G+/5Ll8qRykSQgV7VNsLxohY7OraYQVvX/YB7qA6KTbPR26ZJi7ujE1vEq42FlAXPljK7kp7I+Sp6ZE48BQXRzMQGk+On98sx4vNqgGfb46XMNFJGvUQIV+CFegwHfnzVX2UW1wbUIemMWBZf8ZmbKCLEjZr8NJZ1SC6uMIs/pDiplRlVzItobp27x/rSntTY9RP+Hk2SmOgwraRGIRnFmO0ZWFvE0/oJaPHynM63BeTX3V7xlwfCbxRtXNvTKRK6+C8eMJxu2bmbPanrehyLXlMGApIiDMIT9lAC3VKDg4WKEYfiQ2CH2Sc+ntLyPAfIk/OqP3BrAqamGGlh+8Pw9p6Ro3H40vvd5t0XSDTk2d2CeCapwoBRok9MtgNpgZSd6PVH8wC87d1ELHHSrCSjuP9z+E7UvSR8fxK4v9SNWevkgJ/BAhDI4+KZsFlU=
 install: npm ci || (rm -rf node_modules && npm install)
 language: node_js
-node_js: 11
+node_js: 12
