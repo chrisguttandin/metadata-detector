@@ -5,7 +5,7 @@
             [ 0, 2129 ]
         ]
     ], [
-        "1000-frames-of-noise-encoded-and-tagged-with-quicktime.m4a.txt",
+        "1000-frames-of-noise-encoded-and-tagged-with-quicktime.m4a",
         [
             [ 28, 36 ],
             [ 1290, 2124 ]
@@ -59,13 +59,13 @@
             [ 0, 2129 ]
         ]
     ], [
-        "1000-frames-of-noise-encoded-with-quicktime-and-tagged-with-itunes.m4a.txt",
+        "1000-frames-of-noise-encoded-with-quicktime-and-tagged-with-itunes.m4a",
         [
             [ 28, 36 ],
             [ 1290, 4390 ]
         ]
     ], [
-        "1000-frames-of-noise-encoded-with-quicktime-and-tagged-with-vlc.m4a.txt",
+        "1000-frames-of-noise-encoded-with-quicktime-and-tagged-with-vlc.m4a",
         [
             [ 28, 36 ],
             [ 1290, 2960 ]
