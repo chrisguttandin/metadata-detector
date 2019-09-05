@@ -9,18 +9,16 @@ describe('metadata-detector', () => {
 
         leche.withData(locationsData, (filename, locations) => {
 
-            it('should locate the metadata tags of the file', (done) => {
-                loadFixtureAsArrayBuffer(filename, (err, arrayBuffer) => {
-                    expect(err).to.be.null;
+            let arrayBuffer;
 
-                    metadataDetector
-                        .locate(arrayBuffer)
-                        .then((lctns) => {
-                            expect(lctns).to.deep.equal(locations);
+            beforeEach(async () => {
+                arrayBuffer = await loadFixtureAsArrayBuffer(filename);
+            });
 
-                            done();
-                        });
-                });
+            it('should locate the metadata tags of the file', async () => {
+                const detectedLocations = await metadataDetector.locate(arrayBuffer);
+
+                expect(detectedLocations).to.deep.equal(locations);
             });
 
         });
@@ -31,18 +29,16 @@ describe('metadata-detector', () => {
 
         leche.withData(lengthsData, (filename, byteLength) => {
 
-            it('should strip the metadata tags from the file', (done) => {
-                loadFixtureAsArrayBuffer(filename, (err, arrayBuffer) => {
-                    expect(err).to.be.null;
+            let arrayBuffer;
 
-                    metadataDetector
-                        .strip(arrayBuffer)
-                        .then((rryBffr) => {
-                            expect(rryBffr.byteLength).to.equal(byteLength);
+            beforeEach(async () => {
+                arrayBuffer = await loadFixtureAsArrayBuffer(filename);
+            });
 
-                            done();
-                        });
-                });
+            it('should strip the metadata tags from the file', async () => {
+                const strippedArrayBuffer = await metadataDetector.strip(arrayBuffer);
+
+                expect(strippedArrayBuffer.byteLength).to.equal(byteLength);
             });
 
         });
