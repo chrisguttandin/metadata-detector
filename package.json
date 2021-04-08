@@ -12,7 +12,7 @@
         "@babel/runtime": "^7.13.10",
         "metadata-detector-broker": "^3.0.29",
         "metadata-detector-worker": "^4.0.29",
-        "tslib": "^2.1.0"
+        "tslib": "^2.2.0"
     },
     "description": "A simple tool to locate and strip metadata from files.",
     "devDependencies": {
