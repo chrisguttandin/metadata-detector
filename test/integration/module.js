@@ -4,8 +4,8 @@ import { loadFixtureAsArrayBuffer } from '../helper/load-fixture';
 import locationsData from '../fixtures/locations-data.json';
 
 describe('metadata-detector', () => {
-    describe('locate()', () => {
-        leche.withData(locationsData, (filename, locations) => {
+    for (const [filename, locations] of locationsData) {
+        describe('locate()', () => {
             let arrayBuffer;
 
             beforeEach(async () => {
@@ -18,10 +18,10 @@ describe('metadata-detector', () => {
                 expect(detectedLocations).to.deep.equal(locations);
             });
         });
-    });
+    }
 
-    describe('strip()', () => {
-        leche.withData(lengthsData, (filename, byteLength) => {
+    for (const [filename, byteLength] of lengthsData) {
+        describe('strip()', () => {
             let arrayBuffer;
 
             beforeEach(async () => {
@@ -34,5 +34,5 @@ describe('metadata-detector', () => {
                 expect(strippedArrayBuffer.byteLength).to.equal(byteLength);
             });
         });
-    });
+    }
 });
