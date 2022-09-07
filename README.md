@@ -1,6 +1,6 @@
 # metadata-detector
 
-**A simple tool to locate and strip metadata from files.**
+**A tool to locate and strip metadata from files.**
 
 [![version](https://img.shields.io/npm/v/metadata-detector.svg?style=flat-square)](https://www.npmjs.com/package/metadata-detector)
 

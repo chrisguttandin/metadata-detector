@@ -14,7 +14,7 @@
         "metadata-detector-worker": "^4.0.50",
         "tslib": "^2.4.0"
     },
-    "description": "A simple tool to locate and strip metadata from files.",
+    "description": "A tool to locate and strip metadata from files.",
     "devDependencies": {
         "@babel/core": "^7.18.13",
         "@babel/plugin-external-helpers": "^7.18.6",
