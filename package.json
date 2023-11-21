@@ -11,7 +11,7 @@
     "dependencies": {
         "@babel/runtime": "^7.23.4",
         "metadata-detector-broker": "^3.0.70",
-        "metadata-detector-worker": "^4.0.69",
+        "metadata-detector-worker": "^4.0.70",
         "tslib": "^2.6.2"
     },
     "description": "A tool to locate and strip metadata from files.",
