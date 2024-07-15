@@ -10,7 +10,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.24.8",
-        "metadata-detector-broker": "^3.0.77",
+        "metadata-detector-broker": "^3.0.78",
         "metadata-detector-worker": "^4.0.77",
         "tslib": "^2.6.2"
     },
