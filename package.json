@@ -71,5 +71,5 @@
         "test:integration": "if [ \"$TYPE\" = \"\" -o \"$TYPE\" = \"integration\" ]; then npx vitest --config config/vitest/integration.ts; fi"
     },
     "types": "build/es2019/module.d.ts",
-    "version": "7.0.103"
+    "version": "7.0.104"
 }
